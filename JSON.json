@@ -1,0 +1,26 @@
+{
+  "settings": {
+    "whatsapp": "8801700000000"
+  },
+  "products": {
+    "prod_1": {
+      "name": "iOS Premium Panel",
+      "description": "Bypass for iOS 15-17. Very safe.",
+      "image": "https://link-to-your-image.com/ios.jpg",
+      "prices": {
+        "3 Days": 1200,
+        "7 Days": 2000,
+        "1 Month": 6000,
+      }
+    },
+    "prod_2": {
+      "name": "Android Non-Root",
+      "description": "Safe for main IDs. No root needed.",
+      "image": "https://link-to-your-image.com/android.jpg",
+      "prices": {
+        "7 Days": 400,
+        "15 Days": 900
+      }
+    }
+  }
+}

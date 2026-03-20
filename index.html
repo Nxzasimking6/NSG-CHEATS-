@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSG CHEATS </title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #0b0e14;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --accent-color: #a855f7;
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; }
+        .glow { position: fixed; width: 400px; height: 400px; background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%); z-index: -1; filter: blur(60px); }
+        nav { position: fixed; top: 0; width: 100%; padding: 20px 8%; display: flex; justify-content: space-between; align-items: center; background: rgba(11, 14, 20, 0.8); backdrop-filter: blur(15px); z-index: 1000; border-bottom: 1px solid var(--glass-border); }
+        .logo { font-size: 1.5rem; font-weight: 800; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero { height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 15px; }
+        .hero span { color: var(--accent-color); }
+        .section-padding { padding: 40px 8%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .product-card { background: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 20px; overflow: hidden; transition: var(--transition); position: relative; }
+        .product-card:hover { transform: translateY(-10px); border-color: var(--accent-color); box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2); }
+        .product-img { width: 100%; height: 180px; background: #1a1f29; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .product-img img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .product-info { padding: 20px; text-align: center; }
+        .product-info h3 { margin-bottom: 10px; font-size: 1.3rem; }
+        .product-info p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 20px; min-height: 40px;}
+        .buy-btn { background: var(--primary-gradient); border: none; color: white; padding: 12px 25px; border-radius: 10px; cursor: pointer; font-weight: 600; width: 100%; }
+        .order-wizard { max-width: 600px; margin: 40px auto; background: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 25px; padding: 40px; display: none; }
+        .step { display: none; animation: fadeIn 0.5s ease; }
+        .step.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .step-title { font-size: 1.5rem; margin-bottom: 25px; text-align: center; color: var(--accent-color); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: var(--text-dim); }
+        .form-group input, .form-group select { width: 100%; padding: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 12px; color: white; outline: none; font-size: 1rem; }
+        .price-tag { font-size: 2rem; font-weight: 800; text-align: center; margin: 20px 0; color: #10b981; }
+        .btn-row { display: flex; gap: 10px; margin-top: 20px; }
+        .next-btn { flex: 2; background: var(--primary-gradient); border: none; padding: 15px; border-radius: 12px; color: white; font-weight: 600; cursor: pointer; }
+        .back-btn { flex: 1; background: transparent; border: 1px solid var(--glass-border); color: white; border-radius: 12px; cursor: pointer; }
+        .profile-section { display: flex; justify-content: center; padding-bottom: 100px; }
+        .profile-card { background: var(--card-bg); border: 1px solid var(--glass-border); padding: 25px; border-radius: 20px; display: flex; align-items: center; gap: 15px; width: 350px; }
+        .avatar { width: 50px; height: 50px; background: var(--primary-gradient); border-radius: 50%; display: grid; place-items: center; font-weight: bold; }
+        footer { text-align: center; padding: 40px; border-top: 1px solid var(--glass-border); color: var(--text-dim); font-size: 0.9rem; }
+        #loading-spinner { text-align: center; padding: 50px; color: var(--accent-color); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="glow" style="top: 0; right: 0;"></div>
+    <div class="glow" style="bottom: 0; left: 0;"></div>
+
+    <nav>
+        <div class="logo">NSG CHEATS </div>
+        <div style="color: var(--text-dim); font-size: 0.9rem;">Status: <span style="color: #10b981;">Online</span></div>
+    </nav>
+
+    <section class="hero">
+        <h1>Premium <span>Panel</span> Solutions</h1>
+        <p style="color: var(--text-dim);">Select a product below to start your order</p>
+    </section>
+
+    <!-- Dynamic Products Section -->
+    <section class="section-padding">
+        <div id="loading-spinner">Loading Services...</div>
+        <div class="grid" id="product-grid">
+            <!-- Products will be injected here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Order Wizard -->
+    <section id="order-section" style="padding-bottom: 80px;">
+        <div class="order-wizard" id="wizard">
+            <div class="step active" id="step1">
+                <div class="step-title">Choose Duration</div>
+                <div class="form-group">
+                    <label>Product Selected:</label>
+                    <input type="text" id="selectedProd" readonly style="color: var(--accent-color); font-weight: bold;">
+                </div>
+                <div class="form-group">
+                    <label>Select Plan:</label>
+                    <select id="duration-select" onchange="updatePrice()"></select>
+                </div>
+                <div class="price-tag">Price: <span id="priceDisplay">0</span> BDT</div>
+                <div class="btn-row">
+                    <button class="next-btn" onclick="goToStep(2)">Continue to Details</button>
+                </div>
+            </div>
+
+            <div class="step" id="step2">
+                <div class="step-title">Personal Information</div>
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="uName" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp Number</label>
+                    <input type="text" id="uWhatsApp" placeholder="017XXXXXXXX">
+                </div>
+                <div class="btn-row">
+                    <button class="back-btn" onclick="goToStep(1)">Back</button>
+                    <button class="next-btn" onclick="finalSubmit()">Confirm & Order</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="profile-section">
+        <div class="profile-card">
+            <div class="avatar" id="avatarChar">G</div>
+            <div>
+                <h4 id="profileName">Guest User</h4>
+                <p style="font-size: 0.8rem; color: var(--text-dim);">Status: <span style="color: #10b981;">● Active</span></p>
+                <p style="font-size: 0.7rem; color: var(--text-dim);">Last Order: <span id="lastOrder" style="color: white;">None</span></p>
+            </div>
+        </div>
+    </section>
+
+    <footer><p>&copy; 2024 Panel.Pro | Premium Digital Services</p></footer>
+
+    <script>
+        // 1. YOUR FIREBASE CONFIGURATION
+        const firebaseConfig = {
+  apiKey: "AIzaSyAd9oufApfi0LJrj0M_-0jozsJoM6W1OVk",
+  authDomain: "nsg-cheats-2b47c.firebaseapp.com",
+  projectId: "nsg-cheats-2b47c",
+  storageBucket: "nsg-cheats-2b47c.firebasestorage.app",
+  messagingSenderId: "1039523037290",
+  appId: "1:1039523037290:web:4c2eb8be7730a09c16ca13",
+  measurementId: "G-86MV7KYNFY"
+};
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        let allProducts = {};
+        let adminWhatsApp = "8801234567890"; // Default
+
+        // 2. FETCH DATA FROM FIREBASE
+        function fetchData() {
+            // Get Admin Settings (WhatsApp Number)
+            db.ref('settings/whatsapp').on('value', (snapshot) => {
+                if(snapshot.exists()) adminWhatsApp = snapshot.val();
+            });
+
+            // Get Products
+            db.ref('products').on('value', (snapshot) => {
+                const data = snapshot.val();
+                allProducts = data;
+                renderProducts(data);
+                document.getElementById('loading-spinner').style.display = 'none';
+            });
+        }
+
+        // 3. RENDER PRODUCTS TO GRID
+        function renderProducts(products) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+            
+            if (!products) {
+                grid.innerHTML = '<p>No products available.</p>';
+                return;
+            }
+
+            for (let key in products) {
+                const item = products[key];
+                grid.innerHTML += `
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="${item.image || 'https://via.placeholder.com/400'}" alt="${item.name}">
+                        </div>
+                        <div class="product-info">
+                            <h3>${item.name}</h3>
+                            <p>${item.description}</p>
+                            <button class="buy-btn" onclick="startOrder('${key}')">Order Now</button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // 4. ORDER LOGIC
+        function startOrder(productKey) {
+            const product = allProducts[productKey];
+            document.getElementById('wizard').style.display = 'block';
+            document.getElementById('selectedProd').value = product.name;
+            
+            // Clear and Fill Duration Select
+            const select = document.getElementById('duration-select');
+            select.innerHTML = '';
+            
+            // Loop through prices set in Firebase
+            // Format in Firebase: prices: { "3 Days": 100, "7 Days": 200 }
+            for (let duration in product.prices) {
+                let opt = document.createElement('option');
+                opt.value = duration;
+                opt.innerHTML = `${duration} - ${product.prices[duration]} BDT`;
+                opt.setAttribute('data-price', product.prices[duration]);
+                select.appendChild(opt);
+            }
+
+            updatePrice();
+            window.location.href = '#order-section';
+            goToStep(1);
+        }
+
+        function updatePrice() {
+            const select = document.getElementById('duration-select');
+            if(select.options.length > 0) {
+                const price = select.options[select.selectedIndex].getAttribute('data-price');
+                document.getElementById('priceDisplay').innerText = price;
+            }
+        }
+
+        function goToStep(stepNumber) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step' + stepNumber).classList.add('active');
+        }
+
+        function finalSubmit() {
+            const product = document.getElementById('selectedProd').value;
+            const duration = document.getElementById('duration-select').value;
+            const price = document.getElementById('priceDisplay').innerText;
+            const name = document.getElementById('uName').value;
+            const whatsapp = document.getElementById('uWhatsApp').value;
+
+            if(!name || !whatsapp) { alert("Fill all details!"); return; }
+
+            document.getElementById('profileName').innerText = name;
+            document.getElementById('avatarChar').innerText = name.charAt(0).toUpperCase();
+            document.getElementById('lastOrder').innerText = product;
+
+            const message = `*NEW ORDER*%0A` +
+                            `Product: ${product}%0A` +
+                            `Duration: ${duration}%0A` +
+                            `Price: ${price} BDT%0A` +
+                            `Customer: ${name}%0A` +
+                            `WhatsApp: ${whatsapp}`;
+
+            window.open(`https://wa.me/${adminWhatsApp}?text=${message}`, '_blank');
+        }
+
+        // Start the app
+        fetchData();
+    </script>
+</body>
+</html>
